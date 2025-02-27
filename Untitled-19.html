@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon</title>
+    <style>
+        /* Genel sıfırlama ve temel stil */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body ve genel tasarım */
+        body, html {
+            height: 100%;
+            font-family: Arial, sans-serif;
+            color: #fff;
+        }
+
+        /* Arka plan görseli */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://mcyatirim.com.tr/wp-content/uploads/2022/09/power-plant-construction-scaled.jpg'); /* Yeni görsel */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+        }
+
+        /* Container için stil */
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Başlık */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Geri sayım */
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #f0a500;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Buton */
+        .btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #f0a500;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #d88f00;
+        }
+
+        /* Responsive tasarım */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            .countdown {
+                font-size: 1.5rem;
+            }
+
+            .btn {
+                font-size: 0.9rem;
+                padding: 8px 18px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .countdown {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Arka Plan Görseli -->
+    <div class="background"></div>
+
+    <!-- Sayfa İçeriği -->
+    <div class="container">
+        <h1>Yakında Hizmetinizde!</h1>
+        <p>İnşaat projelerini kurumsal ve bireysel yatırımcıya ulaştırıyoruz, geri sayım başladı!</p>
+        <div id="countdown" class="countdown">30 Gün 00:00:00</div>
+        <button class="btn" onclick="alert('Bizimle İletişime Geçin!')">Bizimle İletişime Geçin</button>
+    </div>
+
+    <!-- Geri Sayım Scripti -->
+    <script>
+        // Başlangıç tarihi: 30 gün sonrası
+        var countDownDate = new Date().getTime() + 30 * 24 * 60 * 60 * 1000;
+
+        var countdownFunction = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countDownDate - now;
+
+            // Hesaplamalar
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Geri sayım elemanını güncelleme
+            document.getElementById("countdown").innerHTML = days + " Gün " + hours + " Saat " + minutes + " Dakika " + seconds + " Saniye ";
+
+            // Geri sayım tamamlandığında
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "Zaman Doldu!";
+            }
+        }, 1000);
+    </script>
+
+</body>
+</html>
